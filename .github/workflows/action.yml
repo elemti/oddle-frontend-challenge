@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      env:
+    - env:
         BROOK_SG_KEY: ${{ secrets.BROOK_SG_KEY }}
         TEST_SECRET: ${{ secrets.TEST_SECRET }}
       run: env
