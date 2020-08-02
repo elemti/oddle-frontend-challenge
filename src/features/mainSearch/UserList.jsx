@@ -20,7 +20,7 @@ export let UserList = () => {
   let currentPage = parseInt(page) || 1;
   let pageCount = Math.ceil(total / PAGE_SIZE);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     dispatch(userSearchThunk(username, currentPage));
   }, [dispatch, username, currentPage]);
 

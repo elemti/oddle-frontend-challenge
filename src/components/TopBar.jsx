@@ -1,8 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar } from '@material-ui/core';
-import { SearchBar } from './SearchBar';
 
-export let TopBar = () => {
+export let TopBar = ({ children }) => {
   return (
     <React.Fragment>
       <AppBar css="background: white">
@@ -13,7 +12,7 @@ export let TopBar = () => {
             flex: 1;
             padding: 0 8px;
           `}>
-            <SearchBar />
+            {children}
           </div>
         </Toolbar>
       </AppBar>

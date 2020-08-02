@@ -25,9 +25,9 @@ let FlexWrap = styled.div`
 export let UserDetail = () => {
   let { username } = useParams();
   let dispatch = useDispatch();
-  let { loadingUserDetail, loadUserDetailError } = useSelector(state => state.mainSearch);
+  let { loadingUserDetail, loadUserDetailError } = useSelector(state => state.detailPage);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     dispatch(userDetailThunk(username));
   }, [dispatch, username]);
 

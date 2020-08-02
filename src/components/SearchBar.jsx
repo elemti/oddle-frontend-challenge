@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
-import SearchSuggest from '../../components/SearchSuggest';
-import { fetchUsers } from './api';
+import SearchSuggest from './SearchSuggest';
+import { fetchUsers } from '../features/mainSearch/api';
 
 export let SearchBar = ({ autoFocus, ...props }) => {
   let [inputVal, setInputVal] = React.useState('');

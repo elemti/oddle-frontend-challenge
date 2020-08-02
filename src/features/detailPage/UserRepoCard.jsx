@@ -9,9 +9,9 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { NoData } from '../../components/NoData';
-import { Placeholder } from './Placeholder';
 import { BORDER_COLOR } from '../../app/constants';
 import { getUserReposThunk } from './slice';
+import { Placeholder } from '../../components/Placeholder';
 
 let RepoItem = ({ repo }) => {
   return (
@@ -69,7 +69,7 @@ let RepoItem = ({ repo }) => {
 };
 
 export let UserRepoCard = () => {
-  let { userRepos, loadingUserRepos, loadUserReposError, userReposPage, hasMoreRepos } = useSelector(state => state.mainSearch);
+  let { userRepos, loadingUserRepos, loadUserReposError, userReposPage, hasMoreRepos } = useSelector(state => state.detailPage);
   let { username } = useParams();
   let dispatch = useDispatch();
 

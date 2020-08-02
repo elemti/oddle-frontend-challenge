@@ -4,12 +4,12 @@ import {
   Typography, Card, CardContent, CardMedia, CircularProgress,
 } from '@material-ui/core';
 import { NoData } from '../../components/NoData';
-import { Placeholder } from './Placeholder';
+import { Placeholder } from '../../components/Placeholder';
 
 let userInfoSize = 260;
 
 export let UserCard = () => {
-  let { userDetail, loadingUserDetail, loadUserDetailError } = useSelector(state => state.mainSearch);
+  let { userDetail, loadingUserDetail, loadUserDetailError } = useSelector(state => state.detailPage);
 
   return (
     <Card css={`

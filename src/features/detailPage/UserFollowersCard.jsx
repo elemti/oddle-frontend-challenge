@@ -6,13 +6,13 @@ import {
   Button, List, ListItem, ListItemAvatar, Avatar, ListItemText,
 } from '@material-ui/core';
 import { NoData } from '../../components/NoData';
-import { Placeholder } from './Placeholder';
 import { getUserFollowersThunk } from './slice';
+import { Placeholder } from '../../components/Placeholder';
 
 export let UserFollowersCard = () => {
   let {
     userFollowers, loadingUserFollowers, loadUserFollowersError, userFollowersPage, hasMoreFollowers
-  } = useSelector(state => state.mainSearch);
+  } = useSelector(state => state.detailPage);
   let { username } = useParams();
   let dispatch = useDispatch();
   let history = useHistory();
