@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
       env:
         SSH_KEY: ${{ secrets.TEST_SECRET }}
-    - run: printenv SSH_KEY > ssh.key && chmod 400 ssh.key
+    - run: SSH_KEY="$SSH_KEY" printenv SSH_KEY > ssh.key && chmod 400 ssh.key
     - run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
     - run: exit 1
     
