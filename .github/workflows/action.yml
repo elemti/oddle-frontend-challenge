@@ -25,8 +25,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
       env:
-        SSH_KEY: ${{ secrets.BROOK_SG_KEY }}
-    - run: echo "$SSH_KEY" > ssh.key && chmod 400 ssh.key
+        BROOK_SG_KEY: ${{ secrets.BROOK_SG_KEY }}
+        TEST_SECRET: ${{ secrets.TEST_SECRET }}
+    - run: env
+    - run: echo "$BROOK_SG_KEY" > ssh.key && chmod 400 ssh.key
     - run: sha256sum ssh.key && du -sh ssh.key
     - run: grep 'PRIVATE KEY' ssh.key
     # - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
