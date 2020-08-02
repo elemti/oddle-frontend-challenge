@@ -45,7 +45,12 @@ export let UserFollowingsCard = () => {
         />
         {(() => {
           if (loadingUserFollowings) return <Placeholder><CircularProgress /></Placeholder>;
-          if (loadUserFollowingsError || !userFollowings.length) return (
+          if (loadUserFollowingsError) return (
+            <Placeholder>
+              <NoData title="" desc="Unable to load following" />
+            </Placeholder>
+          );
+          if (!userFollowings.length) return (
             <Placeholder>
               <NoData title="" desc={`${username} isn't following anyone`} />
             </Placeholder>

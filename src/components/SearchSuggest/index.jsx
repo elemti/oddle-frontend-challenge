@@ -6,28 +6,36 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, Popper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { transparentize } from 'polished';
-import { PRIMARY_COLOR, BORDER_COLOR } from '../../app/constants';
+import { useSelector } from 'react-redux';
 import usePromise from '../../utils/usePromise';
 
-let StyledPopper = styled(React.forwardRef((props, ref) => (
-  <Popper
-    disablePortal
-    ref={ref}
-    {...props}
-  />
-)))`
-  .MuiAutocomplete-option[aria-selected="true"] {
-    background: transparent;
-    color: ${PRIMARY_COLOR};
-  }
-  .MuiAutocomplete-option[data-focus="true"] {
-    background: ${transparentize(.9, PRIMARY_COLOR)};
-  }
-  & > .MuiPaper-root {
-    box-shadow: none;
-    border: 1px solid ${BORDER_COLOR};
-  }
-`;
+let StyledPopper = React.forwardRef((props, ref) => {
+  let {
+    primaryColor,
+    borderColor,
+  } = useSelector(state => state.theme);
+
+  return (
+    <Popper
+      disablePortal
+      ref={ref}
+      css={`
+        .MuiAutocomplete-option[aria-selected="true"] {
+          background: transparent;
+          color: ${primaryColor};
+        }
+        .MuiAutocomplete-option[data-focus="true"] {
+          background: ${transparentize(.9, primaryColor)};
+        }
+        & > .MuiPaper-root {
+          box-shadow: none;
+          border: 1px solid ${borderColor};
+        }
+      `}
+      {...props}
+    />
+  );
+});
 
 let SmallStyledPopper = styled(StyledPopper)`
   .MuiAutocomplete-option {
@@ -46,6 +54,9 @@ let SearchSuggest = ({
   placeholder,
   ...props
 }) => {
+  let {
+    primaryColor,
+  } = useSelector(state => state.theme);
   let ref = React.useRef({});
   ref.current.loadOptions = loadOptions;
   let debouncedLoadOptions = React.useMemo(() => {
@@ -89,7 +100,7 @@ let SearchSuggest = ({
                 flex-shrink: 0;
                 margin-right: 8px;
                 .Mui-focused > & {
-                  color: ${PRIMARY_COLOR};
+                  color: ${primaryColor};
                 }
               `} />
             ),

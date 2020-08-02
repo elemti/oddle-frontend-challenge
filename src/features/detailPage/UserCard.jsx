@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   Typography, Card, CardContent, CardMedia, CircularProgress,
+  Link,
 } from '@material-ui/core';
 import { NoData } from '../../components/NoData';
 import { Placeholder } from '../../components/Placeholder';
@@ -32,7 +33,7 @@ export let UserCard = () => {
             />
             <CardContent>
               <Typography gutterBottom variant="h5">
-                {userDetail.login}
+                <Link color="inherit" underline="none" href={userDetail.html_url} target="_blank">{userDetail.login}</Link>
               </Typography>
               {!!userDetail.name && (
                 <Typography gutterBottom color="textSecondary">

@@ -9,11 +9,11 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { NoData } from '../../components/NoData';
-import { BORDER_COLOR } from '../../app/constants';
 import { getUserReposThunk } from './slice';
 import { Placeholder } from '../../components/Placeholder';
 
 let RepoItem = ({ repo }) => {
+  let { borderColor } = useSelector(state => state.theme);
   return (
     <div css={`
       flex: 1 1 50%;
@@ -21,7 +21,7 @@ let RepoItem = ({ repo }) => {
       padding: 8px;
     `}>
       <div css={`
-        border: 1px solid ${BORDER_COLOR};
+        border: 1px solid ${borderColor};
         border-radius: 4px;
         height: 100%;
         padding: 16px;

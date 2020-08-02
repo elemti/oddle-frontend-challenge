@@ -2,10 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import SearchSuggest from './SearchSuggest';
 import { fetchUsers } from '../features/mainSearch/api';
 
 export let SearchBar = ({ autoFocus, ...props }) => {
+  let theme = useTheme();
   let [inputVal, setInputVal] = React.useState('');
   let searchText = useSelector(state => state.mainSearch.searchText);
   let history = useHistory();
@@ -27,7 +29,9 @@ export let SearchBar = ({ autoFocus, ...props }) => {
       css={`
         width: 100%;
         max-width: 582px;
-        background: white;
+        .MuiInputBase-root {
+          background: ${theme.palette.background.paper};
+        }
       `}
       {...props}
     >
