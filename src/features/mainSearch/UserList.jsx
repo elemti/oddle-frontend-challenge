@@ -11,7 +11,7 @@ import { userSearchThunk } from './slice';
 import { AppBarProgress } from '../../components/AppBarProgress';
 import { NoData } from '../../components/NoData';
 
-export let UserList = () => {
+let UserList = () => {
   let { username, page } = useParams();
   let dispatch = useDispatch();
   let { users, loading, error, total } = useSelector(state => state.mainSearch);
@@ -83,3 +83,5 @@ export let UserList = () => {
     </React.Fragment>
   );
 };
+
+export default UserList;

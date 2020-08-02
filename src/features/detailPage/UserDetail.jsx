@@ -22,7 +22,7 @@ let FlexWrap = styled.div`
   }
 `;
 
-export let UserDetail = () => {
+let UserDetail = () => {
   let { username } = useParams();
   let dispatch = useDispatch();
   let { loadingUserDetail, loadUserDetailError } = useSelector(state => state.detailPage);
@@ -53,3 +53,5 @@ export let UserDetail = () => {
     </FlexWrap>
   );
 };
+
+export default UserDetail;
