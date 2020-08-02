@@ -36,6 +36,7 @@ export let SearchBar = ({ autoFocus, ...props }) => {
       {...props}
     >
       <SearchSuggest
+        value={null}
         autoFocus={autoFocus}
         inputValue={inputVal}
         onInputChange={(e, val, reason) => {
