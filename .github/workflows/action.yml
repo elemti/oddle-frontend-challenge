@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -27,7 +27,8 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.TEST_SECRET }}
     - run: cd $HOME && echo "$SSH_KEY" > ssh.key && cat ssh.key
-    - run: ls -la $HOME && exit 1
+    - run: ls -la $HOME && cat $HOME/ssh.key
+    - run: ls -la $HOME && cat $HOME/.bash_profile && exit 1
     - run: npm run build --if-present
     - run: npm test
 
