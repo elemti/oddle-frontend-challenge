@@ -28,7 +28,8 @@ jobs:
         SSH_KEY: ${{ secrets.BROOK_SG_KEY }}
     - run: SSH_KEY="$SSH_KEY" printenv SSH_KEY > ssh.key && chmod 400 ssh.key
     - run: sha256sum ssh.key && du -sh ssh.key
-    - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
+    - run: grep 'PRIVATE KEY' ssh.key
+    # - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
     - run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
     - run: exit 1
     
