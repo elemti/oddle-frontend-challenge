@@ -26,9 +26,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
       env:
         SSH_KEY: ${{ secrets.TEST_SECRET }}
-    - run: cd $HOME && echo "$SSH_KEY" > ssh.key && cat ssh.key
-    - run: ls -la $HOME && cat $HOME/ssh.key
-    - run: ls -la $HOME && cat $HOME/.bash_profile && exit 1
+    - run: printenv SSH_KEY > ssh.key && chmod 400 ssh.key
+    - run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
+    - run: exit 1
+    
     - run: npm run build --if-present
     - run: npm test
 
