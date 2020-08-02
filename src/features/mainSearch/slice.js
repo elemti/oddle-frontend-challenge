@@ -16,16 +16,13 @@ let slice = createSlice({
       state.loading = true;
       state.searchText = payload;
       state.pristine = false;
-      // state.error = null;
-      // state.users = [];
     },
     userSearchDone: (state, { payload: { err, res } }) => {
       state.loading = false;
       state.users = [];
-      state.error = null;
+      state.error = err;
       state.total = 0;
       if (err) {
-        state.error = err;
         return;
       }
       state.users = res.items;

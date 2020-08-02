@@ -30,34 +30,25 @@ let slice = createSlice({
   reducers: {
     getUserDetail: (state, { payload }) => {
       state.loadingUserDetail = true;
-      // state.loadingUserRepos = true;
-      // state.loadingUserFollowers = true;
-      // state.loadingUserFollowings = true;
     },
     getUserDetailDone: (state, { payload: { err, res } }) => {
       state.loadingUserDetail = false;
-      state.loadUserDetailError = null;
+      state.loadUserDetailError = err;
       state.userDetail = null;
       if (err) {
-        state.loadUserDetailError = err;
         return;
       }
       state.userDetail = res;
     },
     getUserRepos: (state, { payload }) => {
       state.loadingUserRepos = true;
-      // state.userReposPage = payload;
     },
     getUserReposDone: (state, { payload: { err, res, page } }) => {
-      // state.userRepos = [];
       state.loadingUserRepos = false;
-      state.loadUserReposError = null;
       state.hasMoreRepos = false;
-      if (err) {
-        state.loadUserReposError = err;
-        return;
-      }
-      if (!res.length) {
+      state.loadUserReposError = err;
+      if (err || !res.length) {
+        state.userRepos = [];
         return;
       }
       state.userReposPage = page;
@@ -69,13 +60,10 @@ let slice = createSlice({
     },
     getUserFollowersDone: (state, { payload: { err, res, page } }) => {
       state.loadingUserFollowers = false;
-      state.loadUserFollowersError = null;
+      state.loadUserFollowersError = err;
       state.hasMoreFollowers = false;
-      if (err) {
-        state.loadUserFollowersError = err;
-        return;
-      }
-      if (!res.length) {
+      if (err || !res.length) {
+        state.userFollowers = [];
         return;
       }
       state.userFollowersPage = page;
@@ -87,13 +75,10 @@ let slice = createSlice({
     },
     getUserFollowingsDone: (state, { payload: { err, res, page } }) => {
       state.loadingUserFollowings = false;
-      state.loadUserFollowingsError = null;
+      state.loadUserFollowingsError = err;
       state.hasMoreFollowings = false;
-      if (err) {
-        state.loadUserFollowingsError = err;
-        return;
-      }
-      if (!res.length) {
+      if (err || !res.length) {
+        state.userFollowings = [];
         return;
       }
       state.userFollowingsPage = page;
