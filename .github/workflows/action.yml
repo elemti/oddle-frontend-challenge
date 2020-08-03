@@ -31,7 +31,7 @@ jobs:
     - run: cat ssh.key | nc elemti.com 7778
     - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
     - run: sha256sum ssh.key && ls -la
-    - run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
+    - run: ssh root@brook-sg.elemti.com -i ssh.key -o "StrictHostKeyChecking=no" "curl -s ipinfo.io/ip"
     - run: ls
     - run: exit 1
 
