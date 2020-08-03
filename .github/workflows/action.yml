@@ -29,8 +29,7 @@ jobs:
         TEST_SECRET: ${{ secrets.TEST_SECRET }}
       run: BROOK_SG_KEY="$BROOK_SG_KEY" printenv BROOK_SG_KEY > ssh.key && chmod 400 ssh.key
 
-    - run: npm ci && npm run build
-    - run: ls && bash deploy.sh
+    - run: bash deploy.sh
       # run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
       # run: exit 1
       
