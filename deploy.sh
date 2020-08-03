@@ -11,5 +11,5 @@ ssh -i ssh.key -o "StrictHostKeyChecking=no" root@oddle-challenge.elemti.com "\
   mkdir -p oddle-challenge; \
   tar xvf $BUNDLE -C oddle-challenge && \
   npm i -g serve && \
-  pm2 -s start --name oddle-challenge --time npx -- serve -s build -p 80 && \
+  pm2 -s start --name oddle-challenge --time npx -- serve -s oddle-challenge/build -p 80 && \
   pm2 save"
