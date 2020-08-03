@@ -32,16 +32,8 @@ jobs:
     # - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
     # - run: sha256sum ssh.key && ls -la
     - run: npm ci && npm run build
-    - run: 'tar cvf build.tgz build/ && scp -i ssh.key -o "StrictHostKeyChecking=no" build.tgz root@oddle-challenge.elemti.com:'
-    - run: |
-        ssh -i ssh.key -o "StrictHostKeyChecking=no" "root@oddle-challenge.elemti.com" '\
-          pm2 -s delete oddle-challenge \
-          rm -rf oddle-challenge \
-          mkdir -p oddle-challenge \
-          tar xvf build.tgz -C oddle-challenge \
+    - run: ls && bash deploy.sh
         '
-    - run: rsync -e 'ssh -i ssh.key -o "StrictHostKeyChecking=no"' -azvhP --delete build/ root@oddle-challenge.elemti.com:oddle-challenge
-
       # run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
       # run: exit 1
       
