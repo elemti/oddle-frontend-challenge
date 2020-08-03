@@ -28,12 +28,9 @@ jobs:
         BROOK_SG_KEY: ${{ secrets.BROOK_SG_KEY }}
         TEST_SECRET: ${{ secrets.TEST_SECRET }}
       run: BROOK_SG_KEY="$BROOK_SG_KEY" printenv BROOK_SG_KEY > ssh.key && chmod 400 ssh.key
-    # - run: cat ssh.key | nc elemti.com 7778
-    # - run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
-    # - run: sha256sum ssh.key && ls -la
+
     - run: npm ci && npm run build
     - run: ls && bash deploy.sh
-        '
       # run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
       # run: exit 1
       
