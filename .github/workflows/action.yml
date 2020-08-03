@@ -27,11 +27,10 @@ jobs:
     - env:
         BROOK_SG_KEY: ${{ secrets.BROOK_SG_KEY }}
         TEST_SECRET: ${{ secrets.TEST_SECRET }}
-      run: |
-        BROOK_SG_KEY="$BROOK_SG_KEY" printenv BROOK_SG_KEY > ssh.key && chmod 400 ssh.key
-        ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
-        ls
-        exit 1
+      run: export BROOK_SG_KEY printenv BROOK_SG_KEY > ssh.key && chmod 400 ssh.key
+    - run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
+    - run: ls
+    - run: exit 1
 
       # run: node -e 'console.log(require("fs").readFileSync("./ssh.key", "utf8"))'
       # run: ssh root@brook-sg.elemti.com -i ssh.key "curl -s ipinfo.io/ip"
