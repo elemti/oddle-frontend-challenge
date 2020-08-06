@@ -6,6 +6,7 @@ import mockApi from './mockApi';
 let apiInstance = axios.create({
   headers: {
     'Accept': 'application/vnd.github.v3+json',
+    'Authorization': `token ${process.env.REACT_APP_GITHUB_PAT}`,
   },
   baseURL: 'https://api.github.com',
   timeout: 60*1000,
